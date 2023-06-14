@@ -1,5 +1,7 @@
-package com.cron.note;
+package com.cron.controllers;
 
+import com.cron.note.Note;
+import com.cron.note.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
