@@ -1,5 +1,6 @@
 package com.cron.note;
 
+import com.cron.config.FlywayConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GoitDevSpringApplication {
 
 	public static void main(String[] args) {
+		FlywayConfig.migrate("jdbc:h2:D:/GOITDev/goITDevSpring/noteDB");
 		SpringApplication.run(GoitDevSpringApplication.class, args);
 	}
 
