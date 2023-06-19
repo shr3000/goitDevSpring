@@ -11,7 +11,8 @@
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
-            <span th:text="'Notes: ' +${notes.size()}"></span>
+            <span th:text="'Всього нотаток: ' +${notes.size()}" ></span>
+            <br>
             <a href="/note/create" class="btn btn-sm btn-outline-primary">Створити нотатку</a>
         </div>
         <div class="card-body">
@@ -25,10 +26,10 @@
                     <td th:text="${note.title}"></td>
                     <td>
                         <span th:text="${note.content}"></span>
+                        <a th:href="'/note/update?id=' + ${note.id}"
+                           class="btn btn-sm btn-outline-primary">Редагувати</a>
                         <a th:href="'/note/delete?id=' + ${note.id}"
                            class="btn btn-sm btn-outline-danger">Видалити</a>
-                        <a th:href="'/note/update?id=' + ${note.id}"
-                           class="btn btn-sm btn-outline-success">Редагувати</a>
                     </td>
                 </tr>
             </table>

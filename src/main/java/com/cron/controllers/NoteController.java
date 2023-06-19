@@ -23,7 +23,7 @@ public class NoteController {
     @PostMapping("/create")
     public RedirectView createNote(@ModelAttribute Note note){
         RedirectView redirect = new RedirectView();
-        redirect.setUrl("/note/note");
+        redirect.setUrl("/note/list");
         service.add(note);
         return redirect;
     }
@@ -45,7 +45,7 @@ public class NoteController {
     @PostMapping("/update")
     public RedirectView editNote(@ModelAttribute Note note){
         RedirectView redirect = new RedirectView();
-        redirect.setUrl("/note/note");
+        redirect.setUrl("/note/list");
         service.update(note);
         return redirect;
     }
@@ -53,7 +53,7 @@ public class NoteController {
     @GetMapping("/delete")
     public RedirectView delete(@RequestParam long id){
         RedirectView redirect = new RedirectView();
-        redirect.setUrl("/note/note");
+        redirect.setUrl("/note/list");
         service.deleteById(id);
         return  redirect;
     }

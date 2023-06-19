@@ -1,4 +1,4 @@
-package com.cron.note;
+package com.cron;
 
 import com.cron.config.FlywayConfig;
 import org.springframework.boot.SpringApplication;
