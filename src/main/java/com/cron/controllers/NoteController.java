@@ -17,20 +17,20 @@ public class NoteController {
 
     @GetMapping("/create")
     public String create(){
-        return ("note/create");
+        return ("/note/create");
     }
 
     @PostMapping("/create")
     public RedirectView createNote(@ModelAttribute Note note){
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/note/list");
+        RedirectView redirect = new RedirectView();
+        redirect.setUrl("/note/note");
         service.add(note);
-        return redirectView;
+        return redirect;
     }
 
     @GetMapping("/list")
     public ModelAndView getNotes(){
-        ModelAndView modelAndView = new ModelAndView("note/note");
+        ModelAndView modelAndView = new ModelAndView("/note/note");
         modelAndView.addObject("notes", service.listAll());
         return modelAndView;
     }
@@ -39,22 +39,22 @@ public class NoteController {
     public String edit(Model model, @RequestParam long id){
         Note note = service.getById(id);
         model.addAttribute("note", note);
-        return ("note/update");
+        return ("/note/update");
     }
 
     @PostMapping("/update")
     public RedirectView editNote(@ModelAttribute Note note){
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/note/list");
+        RedirectView redirect = new RedirectView();
+        redirect.setUrl("/note/note");
         service.update(note);
-        return redirectView;
+        return redirect;
     }
 
     @GetMapping("/delete")
     public RedirectView delete(@RequestParam long id){
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/note/list");
+        RedirectView redirect = new RedirectView();
+        redirect.setUrl("/note/note");
         service.deleteById(id);
-        return  redirectView;
+        return  redirect;
     }
 }
