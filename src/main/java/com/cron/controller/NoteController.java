@@ -1,4 +1,4 @@
-package com.cron.controllers;
+package com.cron.controller;
 
 import com.cron.note.Note;
 import com.cron.note.NoteService;
