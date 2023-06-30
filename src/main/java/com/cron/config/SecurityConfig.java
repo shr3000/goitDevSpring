@@ -11,19 +11,32 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.util.Properties;
-
 
 @Configuration
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests().requestMatchers("/**").hasRole("USER").and().formLogin();
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .dispatcherTypeMatchers(HttpMethod.valueOf("/")).permitAll()
+                .dispatcherTypeMatchers(HttpMethod.valueOf("/admin/**")).hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .permitAll();
+
         return http.build();
     }
 
-/*    @Bean
+    /*@Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests().requestMatchers("./**").hasRole("USER").and().formLogin();
+        return http.build();
+    }
+
+    @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
@@ -38,5 +51,7 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user, admin);
     }
 
- */
+
+     */
+
 }
